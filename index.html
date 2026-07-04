@@ -1,91 +1,417 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PROJECT: BLACK</title>
+
+<title>PROJECT : BLACK</title>
+
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;700&display=swap" rel="stylesheet">
 
 <style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
 body{
+
 background:#000;
 color:#fff;
-font-family:Courier New, monospace;
+font-family:'JetBrains Mono',monospace;
+overflow:hidden;
+
+}
+
+canvas{
+
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+z-index:-2;
+
+}
+
+#overlay{
+
+position:fixed;
+width:100%;
+height:100%;
+background:rgba(0,0,0,.92);
+
 display:flex;
 justify-content:center;
 align-items:center;
-height:100vh;
-margin:0;
-text-align:center;
+flex-direction:column;
+
 }
 
-.container{
-max-width:700px;
+#boot{
+
+font-size:18px;
+line-height:34px;
+white-space:pre-line;
+
+}
+
+.cursor{
+
+display:inline-block;
+width:12px;
+background:white;
+animation:blink .8s infinite;
+
+}
+
+@keyframes blink{
+
+50%{
+
+opacity:0;
+
+}
+
+}
+
+#main{
+
+display:none;
+
+height:100vh;
+
+justify-content:center;
+
+align-items:center;
+
+flex-direction:column;
+
+text-align:center;
+
+padding:30px;
+
 }
 
 h1{
-font-size:60px;
-letter-spacing:8px;
+
+font-size:75px;
+
+letter-spacing:12px;
+
+margin-bottom:20px;
+
+text-shadow:0 0 15px white;
+
 }
 
-p{
+.subtitle{
+
+color:#999;
+
 font-size:20px;
-color:#bbb;
-line-height:1.7;
+
+margin-bottom:50px;
+
 }
 
 button{
-margin-top:30px;
-padding:15px 40px;
-background:#111;
+
+background:transparent;
+
 color:white;
+
 border:1px solid white;
+
+padding:18px 55px;
+
 font-size:18px;
+
 cursor:pointer;
-transition:.3s;
+
+transition:.35s;
+
 }
 
 button:hover{
+
 background:white;
+
 color:black;
+
+box-shadow:0 0 25px white;
+
 }
 
-hr{
-border:0;
-border-top:1px solid #444;
-margin:30px 0;
+nav{
+
+position:absolute;
+
+top:40px;
+
+right:50px;
+
 }
+
+nav a{
+
+color:white;
+
+margin-left:40px;
+
+text-decoration:none;
+
+font-size:15px;
+
+opacity:.7;
+
+transition:.3s;
+
+}
+
+nav a:hover{
+
+opacity:1;
+
+}
+
+footer{
+
+position:absolute;
+
+bottom:25px;
+
+font-size:13px;
+
+opacity:.4;
+
+}
+
+.glitch{
+
+position:relative;
+
+}
+
+.glitch:before{
+
+content:attr(data-text);
+
+position:absolute;
+
+left:-2px;
+
+text-shadow:-2px 0 red;
+
+clip-path:inset(0 0 45% 0);
+
+animation:glitch1 .7s infinite;
+
+}
+
+.glitch:after{
+
+content:attr(data-text);
+
+position:absolute;
+
+left:2px;
+
+text-shadow:2px 0 cyan;
+
+clip-path:inset(55% 0 0 0);
+
+animation:glitch2 .7s infinite;
+
+}
+
+@keyframes glitch1{
+
+50%{
+
+transform:translate(-2px);
+
+}
+
+}
+
+@keyframes glitch2{
+
+50%{
+
+transform:translate(2px);
+
+}
+
+}
+
 </style>
 
 </head>
 
 <body>
 
-<div class="container">
+<canvas id="stars"></canvas>
 
-<h1>PROJECT: BLACK</h1>
+<div id="overlay">
 
-<hr>
-
-<p>
-Independent Research Collective
-</p>
-
-<p>
-We seek investigators, analysts,
-historians, philosophers,
-and researchers.
-
-<br><br>
-
-Evidence Before Belief.
-</p>
-
-<button onclick="alert('Application Portal Coming Soon.')">
-ENTER
-</button>
+<div id="boot"></div>
 
 </div>
 
+<div id="main">
+
+<nav>
+
+<a href="#">Mission</a>
+
+<a href="#">Archive</a>
+
+<a href="#">Research</a>
+
+<a href="#">Apply</a>
+
+</nav>
+
+<h1 class="glitch" data-text="PROJECT BLACK">
+
+PROJECT BLACK
+
+</h1>
+
+<div class="subtitle">
+
+Independent Research Collective
+
+</div>
+
+<button onclick="enterSite()">
+
+ENTER
+
+</button>
+
+<footer>
+
+Evidence Before Belief
+
+</footer>
+
+</div>
+
+<script>
+
+const lines=[
+
+"BOOTING PROJECT BLACK...",
+
+"Loading Research Database...",
+
+"Checking Integrity...",
+
+"Authorizing Visitor...",
+
+"Connection Secure.",
+
+"",
+
+"ACCESS LEVEL : PUBLIC"
+
+];
+
+let i=0;
+
+const boot=document.getElementById("boot");
+
+function type(){
+
+if(i<lines.length){
+
+boot.innerHTML+=lines[i]+"<br>";
+
+i++;
+
+setTimeout(type,600);
+
+}else{
+
+boot.innerHTML+="<br><span class='cursor'></span>";
+
+setTimeout(()=>{
+
+document.getElementById("overlay").style.display="none";
+
+document.getElementById("main").style.display="flex";
+
+},1200);
+
+}
+
+}
+
+type();
+
+function enterSite(){
+
+alert("Application Portal Coming Soon");
+
+}
+
+const canvas=document.getElementById("stars");
+
+const ctx=canvas.getContext("2d");
+
+canvas.width=innerWidth;
+
+canvas.height=innerHeight;
+
+let stars=[];
+
+for(let i=0;i<180;i++){
+
+stars.push({
+
+x:Math.random()*canvas.width,
+
+y:Math.random()*canvas.height,
+
+r:Math.random()*2,
+
+});
+
+}
+
+function animate(){
+
+ctx.clearRect(0,0,canvas.width,canvas.height);
+
+ctx.fillStyle="white";
+
+stars.forEach(s=>{
+
+ctx.beginPath();
+
+ctx.arc(s.x,s.y,s.r,0,Math.PI*2);
+
+ctx.fill();
+
+s.y+=.2;
+
+if(s.y>canvas.height)s.y=0;
+
+});
+
+requestAnimationFrame(animate);
+
+}
+
+animate();
+
+</script>
+
 </body>
 
-</html>
+  </html>
