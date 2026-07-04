@@ -1,0 +1,170 @@
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Inter', sans-serif;
+}
+
+body{
+background:#000;
+color:#f2f2f2;
+line-height:1.7;
+}
+
+header{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+padding:22px 60px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+background:rgba(0,0,0,0.85);
+backdrop-filter: blur(12px);
+border-bottom:1px solid #111;
+}
+
+.logo{
+font-size:12px;
+letter-spacing:4px;
+text-transform:uppercase;
+color:#fff;
+}
+
+nav a{
+color:#888;
+text-decoration:none;
+margin-left:25px;
+font-size:13px;
+transition:0.3s;
+}
+
+nav a:hover{
+color:#fff;
+}
+
+.hero{
+height:100vh;
+display:flex;
+align-items:center;
+justify-content:center;
+text-align:center;
+padding:0 20px;
+}
+
+.hero h1{
+font-size:52px;
+font-weight:400;
+letter-spacing:-1px;
+color:#fff;
+}
+
+.hero p{
+max-width:540px;
+margin:18px auto;
+color:#aaa;
+font-size:14px;
+}
+
+.btn{
+display:inline-block;
+margin-top:25px;
+padding:10px 28px;
+border:1px solid #fff;
+color:#fff;
+text-decoration:none;
+font-size:12px;
+letter-spacing:2px;
+transition:0.3s;
+}
+
+.btn:hover{
+background:#fff;
+color:#000;
+}
+
+.section{
+padding:130px 16%;
+}
+
+h2{
+font-size:20px;
+font-weight:400;
+margin-bottom:30px;
+color:#fff;
+letter-spacing:1px;
+}
+
+p{
+color:#aaa;
+font-size:14px;
+}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:20px;
+margin-top:40px;
+}
+
+.card{
+border:1px solid #111;
+padding:20px;
+transition:0.3s;
+background:transparent;
+}
+
+.card:hover{
+border-color:#fff;
+}
+
+.card h3{
+font-size:14px;
+margin-bottom:10px;
+color:#fff;
+font-weight:400;
+}
+
+.card p{
+font-size:13px;
+color:#888;
+}
+
+footer{
+text-align:center;
+padding:70px;
+color:#555;
+border-top:1px solid #111;
+font-size:11px;
+letter-spacing:1px;
+}
+
+/* manifesto */
+.manifesto-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+gap:20px;
+margin-top:40px;
+}
+
+.manifesto-card{
+border:1px solid #111;
+padding:20px;
+transition:0.3s;
+}
+
+.manifesto-card:hover{
+border-color:#fff;
+}
+
+.manifesto-card h3{
+font-size:13px;
+margin-bottom:10px;
+color:#fff;
+}
+
+.manifesto-card p{
+font-size:13px;
+color:#888;
+  }
